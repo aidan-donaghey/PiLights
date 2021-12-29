@@ -20,7 +20,7 @@ LED_INVERT     = False   # True to invert the signal (when using NPN transistor 
 LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
 
-def solidColor(strip, color):
+def solidColor( color):
     t1 = time.time()
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, color)
