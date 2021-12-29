@@ -26,6 +26,7 @@ class lights():
 
     }
     self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+    self.strip.begin()
     self.brightness = 100
     self.color = (255,255,255)
   
