@@ -21,9 +21,13 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
 
 def solidColor(strip, color):
+    t1 = time.time()
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, color)
+    t2 = time.time()
+    print(t2-t1)
     strip.show()
+    
 
 # Define functions which animate LEDs in various ways.
 def colorWipe(strip, color, wait_ms=50):
