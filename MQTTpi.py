@@ -1,12 +1,12 @@
 import paho.mqtt.client as paho
 import time
-import lightsAPI as lights
+import lightsAPI
 # Broker and User information
 broker="192.168.1.127"
 # This is the topic that we are subscribing to
 #  It should be subbed to all topics inside of rasplights with the #
 topic = "/rasplights/#"
-
+lights = lightsAPI.lights()
 
 def connect_mqtt() -> paho:
     """This connects to the Broker
@@ -40,10 +40,11 @@ def connect_mqtt() -> paho:
 
 def subscribe(client: paho):
     def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
         if msg.topic in lights.actions:
-            lights.actions[msg.topic]
+            lights.actions[msg.topic](msg)
             print("It is in actions")
+        else:
+            print("Not a Valid command")
     client.subscribe(topic)
     client.on_message = on_message
 
