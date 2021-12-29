@@ -1,4 +1,5 @@
 import json
+import lightsController as lc
 sP = "/rasplights/"
 
 class lights():
@@ -33,9 +34,10 @@ class lights():
   # Primary Colours
   def setcolor(self,*argv):
     x = json.loads(argv[0].payload.decode())
-    colors = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
-    self.colors = colors
-    print(f"Lights changed color to {*colors,}")
+    color = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
+    self.color = color
+    print(f"Lights changed color to {*color,}")
+    lc.solidColor(color)
 
 
   def lightsBlue(self,*argv):
