@@ -32,10 +32,10 @@ class lights():
     print(f"Lights changed to {int(value)}% brightness")
   # Primary Colours
   def setcolor(self,*argv):
-    # print(argv[0].payload.decode())
     x = json.loads(argv[0].payload.decode())
-    print(x.color)
-    # print(f"Lights changed color to {argv[0]},{argv[1]},{argv[2]}")
+    colors = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
+    self.colors = colors
+    print(f"Lights changed color to {*colors,}")
 
 
   def lightsBlue(self,*argv):
