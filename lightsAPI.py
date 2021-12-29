@@ -1,6 +1,7 @@
 import json
 import time
 # import lightsController as lc
+import random
 from rpi_ws281x import *
 sP = "/rasplights/"
 
@@ -54,7 +55,7 @@ class lights():
 
   def solidColor(self,color):
   # Converts the color from the json to the rpi_ws281x color
-    finalcolor = Color(255, 0, 0)
+    finalcolor = Color(random.randint(0,255),random.randint(0,255),random.randint(0,255))
     t1 = time.time()
     for i in range(self.strip.numPixels()):
         self.strip.setPixelColor(i, finalcolor)
