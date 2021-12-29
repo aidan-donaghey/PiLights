@@ -1,4 +1,5 @@
 import time
+import random
 from rpi_ws281x import *
 import argparse
 
@@ -16,7 +17,7 @@ strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, 
 
 def solidColor(color):
   # Converts the color from the json to the rpi_ws281x color
-    finalcolor = Color(*color)
+    finalcolor = Color(random.randint(0,255),random.randint(0,255) , random.randint(0,255))
     t1 = time.time()
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, finalcolor)

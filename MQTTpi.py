@@ -41,8 +41,8 @@ def connect_mqtt() -> paho:
 def subscribe(client: paho):
     def on_message(client, userdata, msg):
         if msg.topic in lights.actions:
-            lights.actions[msg.topic](msg)
             print("It is in actions")
+            lights.actions[msg.topic](msg)
         else:
             print("Not a Valid command")
     client.subscribe(topic)
