@@ -1,5 +1,6 @@
 import paho.mqtt.client as paho
 import time
+import lightsAPI as lights
 # Broker and User information
 broker="192.168.1.127"
 # This is the topic that we are subscribing to
@@ -40,7 +41,9 @@ def connect_mqtt() -> paho:
 def subscribe(client: paho):
     def on_message(client, userdata, msg):
         print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-
+        if msg.topic in lights.actions:
+            lights.actions[msg.topic]
+            print("It is in actions")
     client.subscribe(topic)
     client.on_message = on_message
 
