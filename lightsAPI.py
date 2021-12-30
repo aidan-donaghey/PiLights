@@ -16,6 +16,7 @@ class lights():
     LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
     LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
     LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+    """This contains all of the actions that can be called after rasplights"""
     self.actions = {
         sP + "on": self.lightsOn,
         sP + "off": self.lightsOff,
@@ -24,7 +25,7 @@ class lights():
         sP + "green": self.lightsGreen,
         sP + "red": self.lightsRed,
         sP + "setcolor": self.setcolor,
-        sP + "rainbow": self.rainbow,
+        sP + "rainbow": self.rainbowFunction,
 
 
     }
@@ -32,6 +33,7 @@ class lights():
     self.strip.begin()
     self.brightness = 1
     self.color = [255,255,255]
+    self.rainbow = False
   
   # On and Off States
   def lightsOn(self,*argv):
@@ -58,6 +60,11 @@ class lights():
 
 
   def setcolor(self,*argv):
+    """This takes in a color within a JSON file formatted as "color": {
+    "r": 255,
+    "g": 0,
+    "b": 155 }
+    """
     x = json.loads(argv[0].payload.decode())
     color = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
     self.color = color
@@ -65,6 +72,8 @@ class lights():
     self.__solidColor()
 
   def __solidColor(self):
+    """This is the function that actually sets the color of the LED's for a solid color. It is called for all brightness' and colors.
+    """
   # Converts the color from the json to the rpi_ws281x color
     t1 = time.time()
     newarray =[]
@@ -83,23 +92,47 @@ class lights():
 
 
   def lightsRed(self,*argv):
+    """Wrapper for setting red solid color.
+    """
     print("Lights Red")
     finalcolor = [255,0,0]
     self.color = finalcolor
     self.__solidColor()
 
   def lightsGreen(self,*argv):
+    """Wrapper for setting green solid color.
+    """
     print("Lights Green")
     finalcolor = [0,255,0]
     self.color = finalcolor
     self.__solidColor()
 
   def lightsBlue(self,*argv):
+    """Wrapper for setting blue solid color.
+    """
     print("Lights Blue")
     finalcolor = [0,0,255]
     self.color = finalcolor
     self.__solidColor()
 
-  def rainbow(self,*argv):
-    pass
+  def wheel(pos):
+    """Generate rainbow colors across 0-255 positions."""
+    if pos < 85:
+        return Color(pos * 3, 255 - pos * 3, 0)
+    elif pos < 170:
+        pos -= 85
+        return Color(255 - pos * 3, 0, pos * 3)
+    else:
+        pos -= 170
+        return Color(0, pos * 3, 255 - pos * 3)
+
+  def rainbowFunction(self,*argv):
+    wait_ms = 1
+    """Draw rainbow that uniformly distributes itself across all pixels."""
+    while self.rainbow == True:
+      for j in range(256):
+          for i in range(self.strip.numPixels()):
+              self.strip.setPixelColor(i, self.wheel((int(i * 256 / self.strip.numPixels()) + j) & 255))
+          self.strip.show()
+          time.sleep(wait_ms/1000.0)
  
