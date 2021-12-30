@@ -21,8 +21,8 @@ class lights():
         sP + "off": self.lightsOff,
         sP + "brightness": self.lightsBrightness,
         sP + "blue": self.lightsBlue,
-        sP + "green": self.lightsRed,
-        sP + "red": self.lightsGreen,
+        sP + "green": self.lightsGreen,
+        sP + "red": self.lightsRed,
         sP + "setcolor": self.setcolor,
 
     }
