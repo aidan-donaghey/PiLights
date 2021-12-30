@@ -35,7 +35,7 @@ class lights():
   
   # On and Off States
   def lightsOn(self,*argv):
-    self.brightness = 0
+    self.brightness = 1
     self.color = [255,255,255]
     self.__solidColor()
     print("Lights On")
@@ -56,7 +56,7 @@ class lights():
     self.__solidColor()
   
 
-  
+
   def setcolor(self,*argv):
     x = json.loads(argv[0].payload.decode())
     color = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
