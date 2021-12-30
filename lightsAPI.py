@@ -51,9 +51,9 @@ class lights():
     color = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
     self.color = color
     print(f"Lights changed color to {*color,}")
-    self.solidColor(color)
+    self.__solidColor(color)
 
-  def solidColor(self,color):
+  def __solidColor(self,color):
   # Converts the color from the json to the rpi_ws281x color
     finalcolor = Color(*color)
     t1 = time.time()
@@ -63,14 +63,22 @@ class lights():
     print(t2-t1)
     self.strip.show()
 
-  def lightsBlue(self,*argv):
-    print("Lights Blue")
 
+ 
   def lightsRed(self,*argv):
     print("Lights Red")
+    finalcolor = Color(255,0,0)
+    self.__solidColor(finalcolor)
 
-  def lightsGreen(self,*argv):
-    print("Lights Green")
+    def lightsGreen(self,*argv):
+      print("Lights Green")
+      finalcolor = Color(0,255,0)
+      self.__solidColor(finalcolor)
+
+    def lightsBlue(self,*argv):
+      print("Lights Blue")
+      finalcolor = Color(0,0,255)
+      self.__solidColor(finalcolor)
 
 
  
