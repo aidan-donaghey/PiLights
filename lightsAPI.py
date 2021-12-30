@@ -29,7 +29,7 @@ class lights():
     self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     self.strip.begin()
     self.brightness = 100
-    self.color = (255,255,255)
+    self.color = [255,255,255]
   
   # On and Off States
   def lightsOn(self,*argv):
@@ -44,8 +44,11 @@ class lights():
     Args:
         value (int): int between 0 and 100 to change the brightness
     """
+    self.color = self.color * (float(value)/100)
+    self.__solidColor(self.color)
     print(f"Lights changed to {int(value)}% brightness")
   # Primary Colours
+  
   def setcolor(self,*argv):
     x = json.loads(argv[0].payload.decode())
     color = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
@@ -55,6 +58,7 @@ class lights():
 
   def __solidColor(self,color):
   # Converts the color from the json to the rpi_ws281x color
+    self.color = color
     finalcolor = Color(*color)
     t1 = time.time()
     for i in range(self.strip.numPixels()):
