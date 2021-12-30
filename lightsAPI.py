@@ -70,15 +70,15 @@ class lights():
     finalcolor = Color(255,0,0)
     self.__solidColor(finalcolor)
 
-    def lightsGreen(self,*argv):
-      print("Lights Green")
-      finalcolor = Color(0,255,0)
-      self.__solidColor(finalcolor)
+  def lightsGreen(self,*argv):
+    print("Lights Green")
+    finalcolor = Color(0,255,0)
+    self.__solidColor(finalcolor)
 
-    def lightsBlue(self,*argv):
-      print("Lights Blue")
-      finalcolor = Color(0,0,255)
-      self.__solidColor(finalcolor)
+  def lightsBlue(self,*argv):
+    print("Lights Blue")
+    finalcolor = Color(0,0,255)
+    self.__solidColor(finalcolor)
 
 
  
