@@ -35,6 +35,7 @@ class lights():
     self.brightness = 1
     self.color = [255,255,255]
     self.rainbow = False
+    self.rainbowprocess = Process(target=self.rainbowFunction, args=(1,))
   
   # On and Off States
   def lightsOn(self,*argv):
@@ -75,6 +76,7 @@ class lights():
   def __solidColor(self):
     """This is the function that actually sets the color of the LED's for a solid color. It is called for all brightness' and colors.
     """
+    self.rainbowToggle()
   # Converts the color from the json to the rpi_ws281x color
     t1 = time.time()
     newarray =[]
@@ -119,13 +121,14 @@ class lights():
 
   def rainbowToggle(self,*argv):
     if self.rainbow == True:
+      self.rainbowprocess.join()
       self.rainbow = False
     elif self.rainbow == False:
+      self.rainbowprocess.start()
       self.rainbow = True
     
-    p = Process(target=self.rainbowFunction, args=(1,))
-    p.start()
-    p.join()
+  
+    
 
   def wheel(self,pos):
     """Generate rainbow colors across 0-255 positions."""
