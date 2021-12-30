@@ -1,5 +1,6 @@
 import json
 import time
+from multiprocessing import Process
 # import lightsController as lc
 import random
 from rpi_ws281x import *
@@ -115,6 +116,17 @@ class lights():
     self.color = finalcolor
     self.__solidColor()
 
+
+  def rainbowToggle(self):
+    if self.rainbow == True:
+      self.rainbow = False
+    elif self.rainbow == False:
+      self.rainbow = True
+    
+    p = Process(target=self.rainbowFunction, args=(1,))
+    p.start()
+    p.join()
+
   def wheel(pos):
     """Generate rainbow colors across 0-255 positions."""
     if pos < 85:
@@ -126,8 +138,7 @@ class lights():
         pos -= 170
         return Color(0, pos * 3, 255 - pos * 3)
 
-  def rainbowFunction(self,*argv):
-    wait_ms = 1
+  def rainbowFunction(self,wait_ms):
     """Draw rainbow that uniformly distributes itself across all pixels."""
     while self.rainbow == True:
       for j in range(256):
