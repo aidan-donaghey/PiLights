@@ -24,6 +24,8 @@ class lights():
         sP + "green": self.lightsGreen,
         sP + "red": self.lightsRed,
         sP + "setcolor": self.setcolor,
+        sP + "rainbow": self.rainbow,
+
 
     }
     self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
@@ -33,10 +35,15 @@ class lights():
   
   # On and Off States
   def lightsOn(self,*argv):
+    self.brightness = 0
+    self.color = [255,255,255]
+    self.__solidColor()
     print("Lights On")
+  
 
   def lightsOff(self,*argv):
-    print("Lights Off")
+    self.brightness = 0
+    self.__solidColor()
 
   def lightsBrightness(self,value:int,*argv):
     """Changes the lights brightness
@@ -47,8 +54,8 @@ class lights():
     self.brightness = (float(value.payload.decode())/100.0)
     print(f"Lights changed to {self.brightness}% brightness")
     self.__solidColor()
-    
-  # Primary Colours
+  
+
   
   def setcolor(self,*argv):
     x = json.loads(argv[0].payload.decode())
@@ -93,5 +100,6 @@ class lights():
     self.color = finalcolor
     self.__solidColor()
 
-
+  def rainbow(self,*argv):
+    pass
  
