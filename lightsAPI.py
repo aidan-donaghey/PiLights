@@ -45,15 +45,9 @@ class lights():
         value (int): int between 0 and 100 to change the brightness
     """
     self.brightness = (float(value.payload.decode())/100.0)
-    print(f"The brightness fraction is {(float(value.payload.decode())/100.0)}")
-    newarray =[]
-    for x in self.color:
-      print(f"Colour: {x}")
-      print(f"Adapted values: {int(x * self.brightness)}")
-      newarray.append(int(x * self.brightness))
-    print(f"After Change it is {newarray}")
-    self.__solidColor(newarray)
     print(f"Lights changed to {self.brightness}% brightness")
+    self.__solidColor()
+    
   # Primary Colours
   
   def setcolor(self,*argv):
@@ -61,12 +55,19 @@ class lights():
     color = [x["color"]["r"],x["color"]["g"],x["color"]["b"]]
     self.color = color
     print(f"Lights changed color to {*color,}")
-    self.__solidColor(color)
+    self.__solidColor()
 
-  def __solidColor(self,color):
+  def __solidColor(self):
   # Converts the color from the json to the rpi_ws281x color
-    finalcolor = Color(*color)
     t1 = time.time()
+    newarray =[]
+    for x in self.color:
+      print(f"Colour: {x}")
+      print(f"Adapted values: {int(x * self.brightness)}")
+      newarray.append(int(x * self.brightness))
+
+    finalcolor = Color(*newarray)
+    
     for i in range(self.strip.numPixels()):
         self.strip.setPixelColor(i, finalcolor)
     t2 = time.time()
@@ -74,24 +75,23 @@ class lights():
     self.strip.show()
 
 
- 
   def lightsRed(self,*argv):
     print("Lights Red")
     finalcolor = [255,0,0]
     self.color = finalcolor
-    self.__solidColor(finalcolor)
+    self.__solidColor()
 
   def lightsGreen(self,*argv):
     print("Lights Green")
     finalcolor = [0,255,0]
     self.color = finalcolor
-    self.__solidColor(finalcolor)
+    self.__solidColor()
 
   def lightsBlue(self,*argv):
     print("Lights Blue")
     finalcolor = [0,0,255]
     self.color = finalcolor
-    self.__solidColor(finalcolor)
+    self.__solidColor()
 
 
  
