@@ -51,7 +51,7 @@ class lights():
     for x in self.color:
       print(f"Colour: {x}")
       print(f"Adapted values: {int(x * (float(value.payload.decode())/100.0))}")
-      newarray.append(x * int(float(value.payload.decode())/100.0))
+      newarray.append(int(x * (float(value.payload.decode())/100.0)))
     self.color = newarray
     print(f"After Change it is {self.color}")
     self.__solidColor(self.color)
