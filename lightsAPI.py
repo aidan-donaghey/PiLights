@@ -28,7 +28,7 @@ class lights():
     }
     self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     self.strip.begin()
-    self.brightness = 100
+    self.brightness = 1
     self.color = [255,255,255]
   
   # On and Off States
@@ -44,18 +44,16 @@ class lights():
     Args:
         value (int): int between 0 and 100 to change the brightness
     """
-    print(f"The brightness is {value.payload.decode()}")
+    self.brightness = (float(value.payload.decode())/100.0)
     print(f"The brightness fraction is {(float(value.payload.decode())/100.0)}")
-    print(f"After Change it is {self.color}")
     newarray =[]
     for x in self.color:
       print(f"Colour: {x}")
-      print(f"Adapted values: {int(x * (float(value.payload.decode())/100.0))}")
-      newarray.append(int(x * (float(value.payload.decode())/100.0)))
-    self.color = newarray
-    print(f"After Change it is {self.color}")
-    self.__solidColor(self.color)
-    print(f"Lights changed to {int(value.payload.decode())}% brightness")
+      print(f"Adapted values: {int(x * self.brightness)}")
+      newarray.append(int(x * self.brightness))
+    print(f"After Change it is {newarray}")
+    self.__solidColor(newarray)
+    print(f"Lights changed to {self.brightness}% brightness")
   # Primary Colours
   
   def setcolor(self,*argv):
