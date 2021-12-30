@@ -65,7 +65,6 @@ class lights():
 
   def __solidColor(self,color):
   # Converts the color from the json to the rpi_ws281x color
-    self.color = color
     finalcolor = Color(*color)
     t1 = time.time()
     for i in range(self.strip.numPixels()):
@@ -79,16 +78,19 @@ class lights():
   def lightsRed(self,*argv):
     print("Lights Red")
     finalcolor = [255,0,0]
+    self.color = finalcolor
     self.__solidColor(finalcolor)
 
   def lightsGreen(self,*argv):
     print("Lights Green")
     finalcolor = [0,255,0]
+    self.color = finalcolor
     self.__solidColor(finalcolor)
 
   def lightsBlue(self,*argv):
     print("Lights Blue")
     finalcolor = [0,0,255]
+    self.color = finalcolor
     self.__solidColor(finalcolor)
 
 
