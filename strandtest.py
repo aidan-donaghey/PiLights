@@ -101,7 +101,7 @@ if __name__ == '__main__':
     print ('Press Ctrl-C to quit.')
     if not args.clear:
         print('Use "-c" argument to clear LEDs on exit')
-    solidColor(Color(255, 255, 0))
+    solidColor(Color(255, 255, 255))
     # try:
 
     #     while True:
