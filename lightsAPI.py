@@ -117,7 +117,7 @@ class lights():
     self.__solidColor()
 
 
-  def rainbowToggle(self):
+  def rainbowToggle(self,*argv):
     if self.rainbow == True:
       self.rainbow = False
     elif self.rainbow == False:
