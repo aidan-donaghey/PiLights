@@ -48,6 +48,8 @@ class lights():
     print(f"After Change it is {self.color}")
     newarray =[]
     for x in self.color:
+      print(f"Colour: {x}")
+      print(f"Adapted values: {x * int(float(value.payload.decode())/100)}")
       newarray.append(x * int(float(value.payload.decode())/100))
     self.color = newarray
     print(f"After Change it is {self.color}")
