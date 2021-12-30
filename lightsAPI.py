@@ -26,7 +26,7 @@ class lights():
         sP + "green": self.lightsGreen,
         sP + "red": self.lightsRed,
         sP + "setcolor": self.setcolor,
-        sP + "rainbow": self.rainbowFunction,
+        sP + "rainbow": self.rainbowToggle,
 
 
     }
