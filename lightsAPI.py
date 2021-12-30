@@ -44,6 +44,7 @@ class lights():
     Args:
         value (int): int between 0 and 100 to change the brightness
     """
+    print(f"The bRightness is {value}")
     self.color = self.color * (float(value)/100)
     self.__solidColor(self.color)
     print(f"Lights changed to {int(value)}% brightness")
