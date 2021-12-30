@@ -45,9 +45,9 @@ class lights():
         value (int): int between 0 and 100 to change the brightness
     """
     print(f"The bRightness is {value.payload.decode()}")
-    self.color = self.color * (float(value)/100)
+    self.color = self.color * (float(value.payload.decode())/100)
     self.__solidColor(self.color)
-    print(f"Lights changed to {int(value)}% brightness")
+    print(f"Lights changed to {int(value.payload.decode())}% brightness")
   # Primary Colours
   
   def setcolor(self,*argv):
