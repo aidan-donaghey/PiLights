@@ -44,11 +44,13 @@ class lights():
     Args:
         value (int): int between 0 and 100 to change the brightness
     """
-    print(f"The bRightness is {value.payload.decode()}")
+    print(f"The brightness is {value.payload.decode()}")
+    print(f"After Change it is {self.color}")
     newarray =[]
     for x in self.color:
-      newarray.append(x * int(float(value.payload.decode())/100) )
+      newarray.append(x * int(float(value.payload.decode())/100))
     self.color = newarray
+    print(f"After Change it is {self.color}")
     self.__solidColor(self.color)
     print(f"Lights changed to {int(value.payload.decode())}% brightness")
   # Primary Colours
