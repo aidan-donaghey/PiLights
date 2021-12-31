@@ -54,7 +54,7 @@ def run():
     """
     client = connect_mqtt()
     subscribe(client)
-    client.loop_start()
+    client.loop_forever()
 
 
 if __name__ == '__main__':
