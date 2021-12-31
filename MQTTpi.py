@@ -53,8 +53,10 @@ def run():
     """Main Running Loop
     """
     client = connect_mqtt()
-    subscribe(client)
     client.loop_start()
+    while True:
+        subscribe(client)
+        
 
 
 if __name__ == '__main__':
