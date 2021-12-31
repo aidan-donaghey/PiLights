@@ -77,8 +77,9 @@ class lights():
   def __solidColor(self):
     """This is the function that actually sets the color of the LED's for a solid color. It is called for all brightness' and colors.
     """
-    self.rainbow = False
-    self.rainbowToggle()
+    if self.rainbow == True:
+      self.rainbow = False
+      self.rainbowToggle()
   # Converts the color from the json to the rpi_ws281x color
     t1 = time.time()
     newarray =[]
