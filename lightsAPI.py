@@ -27,7 +27,7 @@ class lights():
         sP + "green": self.lightsGreen,
         sP + "red": self.lightsRed,
         sP + "setcolor": self.setcolor,
-        sP + "rainbow": self.rainbowToggle,
+        sP + "rainbow": self.rainbowOn,
 
 
     }
@@ -125,6 +125,8 @@ class lights():
   def rainbowOn(self,*argv):
     """It turns on the rainbow Effect. It sets self.rainbow to True and runs rainbowToggle()
     """
+    self.rainbow = True
+    self.rainbowToggle()
   
   def rainbowToggle(self,*argv):
     """Starts or stops the rainbow process.
