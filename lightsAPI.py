@@ -35,7 +35,7 @@ class lights():
     self.brightness = 1
     self.color = [255,255,255]
     self.rainbow = False
-    self.rainbowprocess = Process(target=self.rainbowFunction, args=(1,))
+    # self.rainbowprocess = Process(target=self.rainbowFunction, args=(1,))
   
   # On and Off States
   def lightsOn(self,*argv):
@@ -121,11 +121,12 @@ class lights():
 
   def rainbowToggle(self,*argv):
     if self.rainbow == True:
-      self.rainbowprocess.join()
+      print("The rainbow was on and now it is set to false")
       self.rainbow = False
+      print(f"{self.rainbow}")
     elif self.rainbow == False:
       print("I got here")
-      self.rainbowprocess.start()
+      self.rainbowFunction()
       self.rainbow = True
     
   
@@ -142,7 +143,7 @@ class lights():
         pos -= 170
         return Color(0, pos * 3, 255 - pos * 3)
 
-  def rainbowFunction(self,wait_ms):
+  def rainbowFunction(self,wait_ms = 1):
     """Draw rainbow that uniformly distributes itself across all pixels."""
     while self.rainbow == True:
       for j in range(256):
