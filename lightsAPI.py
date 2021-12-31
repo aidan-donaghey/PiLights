@@ -4,6 +4,7 @@ from multiprocessing import Process
 # import lightsController as lc
 import random
 from rpi_ws281x import *
+from strandtest import rainbow
 sP = "/rasplights/"
 
 class lights():
@@ -35,7 +36,7 @@ class lights():
     self.brightness = 1
     self.color = [255,255,255]
     self.rainbow = False
-    # self.rainbowprocess = Process(target=self.rainbowFunction, args=(1,))
+    self.rainbowprocess = Process(target=self.rainbowFunction, args=(1,))
   
   # On and Off States
   def lightsOn(self,*argv):
@@ -76,6 +77,7 @@ class lights():
   def __solidColor(self):
     """This is the function that actually sets the color of the LED's for a solid color. It is called for all brightness' and colors.
     """
+    self.rainbow = False
     self.rainbowToggle()
   # Converts the color from the json to the rpi_ws281x color
     t1 = time.time()
@@ -119,16 +121,17 @@ class lights():
     self.__solidColor()
 
 
+  def rainbowOn(self,*argv):
+    """It turns on the rainbow Effect. It sets self.rainbow to True and runs rainbowToggle()
+    """
+  
   def rainbowToggle(self,*argv):
+    """Starts or stops the rainbow process.
+    """
     if self.rainbow == True:
-      print("The rainbow was on and now it is set to false")
-      self.rainbow = False
-      print(f"{self.rainbow}")
+      self.rainbowprocess.start()
     elif self.rainbow == False:
-      print("I got here")
-      self.rainbowFunction()
-      self.rainbow = True
-    
+      self.rainbowprocess.join()
   
     
 
@@ -152,3 +155,5 @@ class lights():
           self.strip.show()
           time.sleep(wait_ms/1000.0)
  
+  def clearAnimation(self):
+    pass
