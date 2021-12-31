@@ -1,6 +1,7 @@
 import paho.mqtt.client as paho
 import time
 import lightsAPI
+from multiprocessing import Process
 # Broker and User information
 broker="192.168.1.127"
 # This is the topic that we are subscribing to
@@ -48,15 +49,16 @@ def subscribe(client: paho):
     client.subscribe(topic)
     client.on_message = on_message
 
-
+def subloop(client):
+    while True:
+        subscribe(client)
 def run():
     """Main Running Loop
     """
     client = connect_mqtt()
     client.loop_start()
-    while True:
-        subscribe(client)
-        
+    p = Process(target=subloop, args=(client,))
+    p.start()
 
 
 if __name__ == '__main__':
