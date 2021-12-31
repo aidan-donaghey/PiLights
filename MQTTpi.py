@@ -57,8 +57,8 @@ def run():
     """
     client = connect_mqtt()
     client.loop_start()
-    p = Process(target=subloop, args=(client,))
-    p.start()
+    subscribe(client)
+    
 
 
 if __name__ == '__main__':
