@@ -36,7 +36,8 @@ class lights():
     self.brightness = 1
     self.color = [255,255,255]
     self.rainbow = False
-    self.rainbowprocess = Process(target=self.rainbowFunction, args=(1,))
+    self.rainbowprocess = None
+    # = Process(target=self.rainbowFunction, args=(1,))
   
   # On and Off States
   def lightsOn(self,*argv):
@@ -133,6 +134,7 @@ class lights():
     """Starts or stops the rainbow process.
     """
     if self.rainbow == True:
+      self.rainbowprocess = Process(target=self.rainbowFunction, args=(1,))
       self.rainbowprocess.start()
     elif self.rainbow == False:
       self.rainbowprocess.terminate()
