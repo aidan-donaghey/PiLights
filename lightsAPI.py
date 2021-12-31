@@ -134,6 +134,7 @@ class lights():
     if self.rainbow == True:
       self.rainbowprocess.start()
     elif self.rainbow == False:
+      self.rainbowprocess.terminate()
       self.rainbowprocess.join()
   
     
