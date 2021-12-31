@@ -125,8 +125,9 @@ class lights():
   def rainbowOn(self,*argv):
     """It turns on the rainbow Effect. It sets self.rainbow to True and runs rainbowToggle()
     """
-    self.rainbow = True
-    self.rainbowToggle()
+    if self.rainbow == False:
+      self.rainbow = True
+      self.rainbowToggle()
   
   def rainbowToggle(self,*argv):
     """Starts or stops the rainbow process.
@@ -135,7 +136,10 @@ class lights():
       self.rainbowprocess.start()
     elif self.rainbow == False:
       self.rainbowprocess.terminate()
+      print("The rainbow Process is terminated")
       self.rainbowprocess.join()
+      print("The rainbow Process is joined")
+      
   
     
 
