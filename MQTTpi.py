@@ -40,6 +40,7 @@ def connect_mqtt() -> paho:
 
 def subscribe(client: paho):
     def on_message(client, userdata, msg):
+        print("Something Published with tha messages " + msg.topic)
         if msg.topic in lights.actions:
             print("It is in actions")
             lights.actions[msg.topic](msg)

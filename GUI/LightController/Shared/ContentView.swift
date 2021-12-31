@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    var client = MQTTManager()
     let columnLayout = Array(repeating: GridItem(), count: 10)
     @State private var selectedColor = Color.cyan
     let allColors: [Color] = [.cyan,.blue,.indigo]
@@ -20,10 +21,10 @@ struct ContentView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(selectedColor)
                 .padding(10)
-            OptionCard(color: Color.red, title: "Turn on ", price: 11.99)
-            OptionCard(color: Color.blue, title: "Turn on ", price: 11.99)
-            OptionCard(color: Color.green, title: "Turn on ", price: 11.99)
-            OptionCard(color: Color.gray, title: "Choose Color", price: 11.99)
+            OptionCard(color: Color.red, title: "Turn on ", colorOption: selectedColor,client: client)
+            OptionCard(color: Color.blue, title: "Turn on ", colorOption: selectedColor,client: client)
+            OptionCard(color: Color.green, title: "Turn on ", colorOption: selectedColor,client: client)
+            OptionCard(color: Color.black, title: "Turn off ", colorOption: selectedColor,client: client)
         
         }
     }
@@ -32,33 +33,57 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+        }
     }
 }
 
 
 struct CardModifier: ViewModifier {
+    let color: Color
+    let client: MQTTManager
     func body(content: Content) -> some View {
-        content
+        return content
             .cornerRadius(20)
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 0)
+            .modifier(Track(eventName: color.description, client: client))
     }
-    
 }
+
+struct Track: ViewModifier {
+    let eventName: String
+    let client: MQTTManager
+
+    func body(content: Content) -> some View {
+        return content.simultaneousGesture(TapGesture().onEnded({
+            client.publish(topic: "/raspights/" + eventName, message: "10")
+            print(self.eventName)
+        }))
+    }
+}
+
+
 
 struct OptionCard: View {
     
     var color: Color
     var title: String
-    var price: Double
+    var colorOption: Color
+    var client : MQTTManager
     
     var body: some View {
+//        let tap = TapGesture()
+//                   .onEnded { _ in
+//                       print("Square Tapped " + color.description)
+//                   }
         HStack(alignment: .center) {
             Rectangle()
                 .fill(color)
                 .aspectRatio(contentMode: .fit)
                 .padding(.all, 20)
                 .frame(width: 100)
+                
             
             Spacer()
             VStack(alignment: .trailing) {
@@ -70,7 +95,9 @@ struct OptionCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .background(Color(red: 32/255, green: 36/255, blue: 38/255))
-        .modifier(CardModifier())
+        .modifier(CardModifier(color: color, client: client))
+//        .modifier(Track(eventName: color.description + "tapped!"))
+
         .padding(.all, 10)
     }
 }
