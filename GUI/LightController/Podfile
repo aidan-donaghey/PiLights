@@ -7,6 +7,7 @@ target 'LightController (iOS)' do
 
   # Pods for LightController (iOS)
   pod 'CocoaMQTT'
+  pod 'SwiftMQTT'
 
 end
 
@@ -16,5 +17,6 @@ target 'LightController (macOS)' do
 
   # Pods for LightController (macOS)
   pod 'CocoaMQTT'
+  pod 'SwiftMQTT'
 
 end

@@ -18,6 +18,8 @@
 		6F29718E277EC18B00078CCD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F297164277EC18900078CCD /* ContentView.swift */; };
 		6F29718F277EC18B00078CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F297165277EC18B00078CCD /* Assets.xcassets */; };
 		6F297190277EC18B00078CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F297165277EC18B00078CCD /* Assets.xcassets */; };
+		6F5C951E277FF677001DB3B6 /* LightsAPI2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C951D277FF677001DB3B6 /* LightsAPI2.swift */; };
+		6F5C951F277FF677001DB3B6 /* LightsAPI2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C951D277FF677001DB3B6 /* LightsAPI2.swift */; };
 		6F8B7255277EC91B000623F9 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8B7254277EC91B000623F9 /* Components.swift */; };
 		6F8B7256277EC91B000623F9 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8B7254277EC91B000623F9 /* Components.swift */; };
 		6F8B7258277F9391000623F9 /* LightsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8B7257277F9391000623F9 /* LightsAPI.swift */; };
@@ -58,6 +60,7 @@
 		6F297183277EC18B00078CCD /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F297187277EC18B00078CCD /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		6F297189277EC18B00078CCD /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		6F5C951D277FF677001DB3B6 /* LightsAPI2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsAPI2.swift; sourceTree = "<group>"; };
 		6F8B7254277EC91B000623F9 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		6F8B7257277F9391000623F9 /* LightsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsAPI.swift; sourceTree = "<group>"; };
 		71C6216C5E9284130822CF0A /* Pods_LightController__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightController__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +132,7 @@
 				6F297165277EC18B00078CCD /* Assets.xcassets */,
 				6F8B7254277EC91B000623F9 /* Components.swift */,
 				6F8B7257277F9391000623F9 /* LightsAPI.swift */,
+				6F5C951D277FF677001DB3B6 /* LightsAPI2.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -178,7 +182,6 @@
 				644AF3F65D2F9DFF504B434C /* Pods-LightController (macOS).debug.xcconfig */,
 				1D6FBB06405FF8C83EBA40A6 /* Pods-LightController (macOS).release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -425,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F5C951E277FF677001DB3B6 /* LightsAPI2.swift in Sources */,
 				6F29718D277EC18B00078CCD /* ContentView.swift in Sources */,
 				6F8B7255277EC91B000623F9 /* Components.swift in Sources */,
 				6F29718B277EC18B00078CCD /* LightControllerApp.swift in Sources */,
@@ -436,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F5C951F277FF677001DB3B6 /* LightsAPI2.swift in Sources */,
 				6F29718E277EC18B00078CCD /* ContentView.swift in Sources */,
 				6F8B7256277EC91B000623F9 /* Components.swift in Sources */,
 				6F29718C277EC18B00078CCD /* LightControllerApp.swift in Sources */,
