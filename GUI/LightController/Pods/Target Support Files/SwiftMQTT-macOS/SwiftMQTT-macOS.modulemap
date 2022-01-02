@@ -1,0 +1,6 @@
+framework module SwiftMQTT {
+  umbrella header "SwiftMQTT-macOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
