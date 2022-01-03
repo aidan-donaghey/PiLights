@@ -8,18 +8,11 @@ import {
   Card,
   List,
 } from "@ui-kitten/components";
-import { default as theme } from "./app/theme/green.json"; // <-- Import app theme
+import { default as theme } from "./app/theme/green.json";
 import { publishMQTT } from "./app/utilities/MQTT";
-import { ListCustomItemShowcase } from "./app/components/ListCustomItems";
 import { ListItemSingle, ListItems } from "./app/components/SimpleListItem";
+import { HomeScreen } from "./app/screens/HomeScreen";
 // connect the client
-const HomeScreen = () => (
-  <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    <Text category="h1">HOME LIGHT CONTROLS</Text>
-    {/* <ListItemSingle color="White"></ListItemSingle> */}
-    <ListItems colors={["Red", "Blue", "Green"]}></ListItems>
-  </Layout>
-);
 
 export default function App() {
   const handlePress = () => publishMQTT("/rasplights/red", "10");
